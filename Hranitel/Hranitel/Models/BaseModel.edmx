@@ -1,0 +1,526 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище HranitelPROModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CelPos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DefUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="InformationAboutTourists">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Otchestvo" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Organisation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="BirthDay" Type="date" Nullable="false" />
+          <Property Name="SeriaPass" Type="nchar" MaxLength="4" Nullable="false" />
+          <Property Name="NomerPass" Type="nchar" MaxLength="8" />
+          <Property Name="IdZayvk" Type="int" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TypeZayavk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="BirthDay" Type="date" />
+          <Property Name="Passport" Type="nvarchar(max)" />
+          <Property Name="Login" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="Naznach" Type="date" />
+          <Property Name="Role" Type="int" />
+        </EntityType>
+        <EntityType Name="Zayavki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdDefUsers" Type="int" />
+          <Property Name="IdUsers" Type="int" />
+          <Property Name="Type" Type="int" />
+          <Property Name="Dates" Type="date" />
+          <Property Name="Status" Type="nchar" MaxLength="10" />
+          <Property Name="Cel" Type="int" />
+        </EntityType>
+        <Association Name="FK_InformationAboutTourists_Zayavki">
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="0..1" />
+          <End Role="InformationAboutTourists" Type="Self.InformationAboutTourists" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zayavki">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="InformationAboutTourists">
+              <PropertyRef Name="IdZayvk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavki_CelPos">
+          <End Role="CelPos" Type="Self.CelPos" Multiplicity="0..1" />
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CelPos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zayavki">
+              <PropertyRef Name="Cel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavki_DefUsers">
+          <End Role="DefUsers" Type="Self.DefUsers" Multiplicity="0..1" />
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DefUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zayavki">
+              <PropertyRef Name="IdDefUsers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavki_TypeZayavk">
+          <End Role="TypeZayavk" Type="Self.TypeZayavk" Multiplicity="0..1" />
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeZayavk">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zayavki">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavki_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zayavki">
+              <PropertyRef Name="IdUsers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище HranitelPROModelContainer">
+          <EntitySet Name="CelPos" EntityType="Self.CelPos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DefUsers" EntityType="Self.DefUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InformationAboutTourists" EntityType="Self.InformationAboutTourists" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TypeZayavk" EntityType="Self.TypeZayavk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zayavki" EntityType="Self.Zayavki" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_InformationAboutTourists_Zayavki" Association="Self.FK_InformationAboutTourists_Zayavki">
+            <End Role="Zayavki" EntitySet="Zayavki" />
+            <End Role="InformationAboutTourists" EntitySet="InformationAboutTourists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavki_CelPos" Association="Self.FK_Zayavki_CelPos">
+            <End Role="CelPos" EntitySet="CelPos" />
+            <End Role="Zayavki" EntitySet="Zayavki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavki_DefUsers" Association="Self.FK_Zayavki_DefUsers">
+            <End Role="DefUsers" EntitySet="DefUsers" />
+            <End Role="Zayavki" EntitySet="Zayavki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavki_TypeZayavk" Association="Self.FK_Zayavki_TypeZayavk">
+            <End Role="TypeZayavk" EntitySet="TypeZayavk" />
+            <End Role="Zayavki" EntitySet="Zayavki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavki_Users" Association="Self.FK_Zayavki_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Zayavki" EntitySet="Zayavki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HranitelPROModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CelPos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zayavkis" Relationship="Self.FK_Zayavki_CelPos" FromRole="CelPos" ToRole="Zayavki" />
+        </EntityType>
+        <EntityType Name="DefUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zayavkis" Relationship="Self.FK_Zayavki_DefUsers" FromRole="DefUsers" ToRole="Zayavki" />
+        </EntityType>
+        <EntityType Name="InformationAboutTourist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Otchestvo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Organisation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BirthDay" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="SeriaPass" Type="String" MaxLength="4" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="NomerPass" Type="String" MaxLength="8" FixedLength="true" Unicode="true" />
+          <Property Name="IdZayvk" Type="Int32" />
+          <NavigationProperty Name="Zayavki" Relationship="Self.FK_InformationAboutTourists_Zayavki" FromRole="InformationAboutTourists" ToRole="Zayavki" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Role" FromRole="Role" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TypeZayavk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Zayavkis" Relationship="Self.FK_Zayavki_TypeZayavk" FromRole="TypeZayavk" ToRole="Zayavki" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="0" />
+          <Property Name="Passport" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Naznach" Type="DateTime" Precision="0" />
+          <Property Name="Role" Type="Int32" />
+          <NavigationProperty Name="Role1" Relationship="Self.FK_Users_Role" FromRole="Users" ToRole="Role" />
+          <NavigationProperty Name="Zayavkis" Relationship="Self.FK_Zayavki_Users" FromRole="Users" ToRole="Zayavki" />
+        </EntityType>
+        <EntityType Name="Zayavki">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdDefUsers" Type="Int32" />
+          <Property Name="IdUsers" Type="Int32" />
+          <Property Name="Type" Type="Int32" />
+          <Property Name="Dates" Type="DateTime" Precision="0" />
+          <Property Name="Status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Cel" Type="Int32" />
+          <NavigationProperty Name="CelPos" Relationship="Self.FK_Zayavki_CelPos" FromRole="Zayavki" ToRole="CelPos" />
+          <NavigationProperty Name="DefUser" Relationship="Self.FK_Zayavki_DefUsers" FromRole="Zayavki" ToRole="DefUsers" />
+          <NavigationProperty Name="InformationAboutTourists" Relationship="Self.FK_InformationAboutTourists_Zayavki" FromRole="Zayavki" ToRole="InformationAboutTourists" />
+          <NavigationProperty Name="TypeZayavk" Relationship="Self.FK_Zayavki_TypeZayavk" FromRole="Zayavki" ToRole="TypeZayavk" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Zayavki_Users" FromRole="Zayavki" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Zayavki_CelPos">
+          <End Role="CelPos" Type="Self.CelPos" Multiplicity="0..1" />
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CelPos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zayavki">
+              <PropertyRef Name="Cel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavki_DefUsers">
+          <End Role="DefUsers" Type="Self.DefUser" Multiplicity="0..1" />
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DefUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zayavki">
+              <PropertyRef Name="IdDefUsers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InformationAboutTourists_Zayavki">
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="0..1" />
+          <End Role="InformationAboutTourists" Type="Self.InformationAboutTourist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zayavki">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="InformationAboutTourists">
+              <PropertyRef Name="IdZayvk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavki_TypeZayavk">
+          <End Role="TypeZayavk" Type="Self.TypeZayavk" Multiplicity="0..1" />
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TypeZayavk">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zayavki">
+              <PropertyRef Name="Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Zayavki_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Zayavki" Type="Self.Zayavki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Zayavki">
+              <PropertyRef Name="IdUsers" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HranitelPROEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CelPos" EntityType="Self.CelPos" />
+          <EntitySet Name="DefUsers" EntityType="Self.DefUser" />
+          <EntitySet Name="InformationAboutTourists" EntityType="Self.InformationAboutTourist" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TypeZayavks" EntityType="Self.TypeZayavk" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="Zayavkis" EntityType="Self.Zayavki" />
+          <AssociationSet Name="FK_Zayavki_CelPos" Association="Self.FK_Zayavki_CelPos">
+            <End Role="CelPos" EntitySet="CelPos" />
+            <End Role="Zayavki" EntitySet="Zayavkis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavki_DefUsers" Association="Self.FK_Zayavki_DefUsers">
+            <End Role="DefUsers" EntitySet="DefUsers" />
+            <End Role="Zayavki" EntitySet="Zayavkis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InformationAboutTourists_Zayavki" Association="Self.FK_InformationAboutTourists_Zayavki">
+            <End Role="Zayavki" EntitySet="Zayavkis" />
+            <End Role="InformationAboutTourists" EntitySet="InformationAboutTourists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Role" Association="Self.FK_Users_Role">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavki_TypeZayavk" Association="Self.FK_Zayavki_TypeZayavk">
+            <End Role="TypeZayavk" EntitySet="TypeZayavks" />
+            <End Role="Zayavki" EntitySet="Zayavkis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Zayavki_Users" Association="Self.FK_Zayavki_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Zayavki" EntitySet="Zayavkis" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище HranitelPROModelContainer" CdmEntityContainer="HranitelPROEntities">
+          <EntitySetMapping Name="CelPos">
+            <EntityTypeMapping TypeName="HranitelPROModel.CelPos">
+              <MappingFragment StoreEntitySet="CelPos">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DefUsers">
+            <EntityTypeMapping TypeName="HranitelPROModel.DefUser">
+              <MappingFragment StoreEntitySet="DefUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InformationAboutTourists">
+            <EntityTypeMapping TypeName="HranitelPROModel.InformationAboutTourist">
+              <MappingFragment StoreEntitySet="InformationAboutTourists">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Otchestvo" ColumnName="Otchestvo" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="SeriaPass" ColumnName="SeriaPass" />
+                <ScalarProperty Name="NomerPass" ColumnName="NomerPass" />
+                <ScalarProperty Name="IdZayvk" ColumnName="IdZayvk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="HranitelPROModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HranitelPROModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TypeZayavks">
+            <EntityTypeMapping TypeName="HranitelPROModel.TypeZayavk">
+              <MappingFragment StoreEntitySet="TypeZayavk">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="HranitelPROModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="Passport" ColumnName="Passport" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Naznach" ColumnName="Naznach" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zayavkis">
+            <EntityTypeMapping TypeName="HranitelPROModel.Zayavki">
+              <MappingFragment StoreEntitySet="Zayavki">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="IdDefUsers" ColumnName="IdDefUsers" />
+                <ScalarProperty Name="IdUsers" ColumnName="IdUsers" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Dates" ColumnName="Dates" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Cel" ColumnName="Cel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

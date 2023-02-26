@@ -1,0 +1,86 @@
+﻿<Page x:Class="Hranitel.View.ForOnePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hranitel.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ForOnePage" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="60*"/>
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <Grid Margin="0,0,0,24">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40*"/>
+                <ColumnDefinition Width="60*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Background="LightGray">
+                <TextBlock Text="Выберите цель" Margin="20"  VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+                <ComboBox Width="150" Height="20"  x:Name="CmbCel" DisplayMemberPath="Name" ></ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Background="LightGray" Orientation="Horizontal">
+                <TextBlock Text="Имя выполняющего заявку" Height="21" Margin="30" ></TextBlock>
+                <ComboBox Width="150" Height="20" x:Name="CmbFio" DisplayMemberPath="FIO" ></ComboBox>
+            </StackPanel>
+        </Grid>
+        <Grid Margin="0,112,0,0" Grid.RowSpan="2" Height="237" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50*"/>
+                <ColumnDefinition Width="50*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Vertical" Height="237" VerticalAlignment="Center" Margin="20 0 20 0">
+                <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
+                    <TextBlock Width="80" Text="Имя"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0 " x:Name="TxbName" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Width="80" Text="Фамилия"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0" x:Name="TxbLastName" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Width="80" Text="Отчество"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0" x:Name="TxbOtchestvo" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Width="80" Text="Телефон"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0" x:Name="TxbPhone" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Width="80" Text="Емаил"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0" x:Name="TxbEmail" ></TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Vertical" Height="237" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Margin="0 30 0 0">
+                    <TextBlock Width="80" Text="Организация"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0" x:Name="TxbOrganization" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Width="80" Text="Примечание"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0" x:Name="TxbComment" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Width="89" Text="Дата рождения"></TextBlock>
+                    <DatePicker Width="150" Margin="10 0 10 0" Height="30" x:Name="DatePic" ></DatePicker>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Width="80" Text="Серия"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0" x:Name="TxbSeria" ></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0 20 0 0">
+                    <TextBlock Width="80" Text="Номер"></TextBlock>
+                    <TextBox Width="150" Margin="10 0 10 0" x:Name="TxbNomer" ></TextBox>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="2" VerticalAlignment="Center">
+            <Button  Content="Подать" Foreground="White" Click="Button_Click" Width="100" Height="30"  Margin="20"  />
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,37 @@
+﻿<Page x:Class="HranitelPro.View.SecurityPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HranitelPro.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SecurityPage" Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1">
+            
+        </Grid>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+                <RowDefinition Height="70"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Список поданных заявок" FontSize="20" FontWeight="DemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+            <Button Grid.Row="2" Height="25" Width="100" Content="Закзать пропуск" Click="NewProp"/>
+            <DataGrid Grid.Row="1">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Тип заявки" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Подразделение" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Дата и время" Width="*"></DataGridTextColumn>
+                    <DataGridTextColumn Header="Статус" Width="*"></DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Page>

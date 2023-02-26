@@ -1,0 +1,15 @@
+C:\Users\глеб\source\repos\Fighting\Fighting\bin\Debug\net7.0\Fighting.exe
+C:\Users\глеб\source\repos\Fighting\Fighting\bin\Debug\net7.0\Fighting.deps.json
+C:\Users\глеб\source\repos\Fighting\Fighting\bin\Debug\net7.0\Fighting.runtimeconfig.json
+C:\Users\глеб\source\repos\Fighting\Fighting\bin\Debug\net7.0\Fighting.dll
+C:\Users\глеб\source\repos\Fighting\Fighting\bin\Debug\net7.0\Fighting.pdb
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\Fighting.csproj.AssemblyReference.cache
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\Fighting.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\Fighting.AssemblyInfoInputs.cache
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\Fighting.AssemblyInfo.cs
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\Fighting.csproj.CoreCompileInputs.cache
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\Fighting.dll
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\refint\Fighting.dll
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\Fighting.pdb
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\Fighting.genruntimeconfig.cache
+C:\Users\глеб\source\repos\Fighting\Fighting\obj\Debug\net7.0\ref\Fighting.dll

@@ -1,0 +1,30 @@
+﻿<Page x:Class="HranitelPro.View.NewPropPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HranitelPro.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="NewPropPage" Background="White">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Тип заявки" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+        <ComboBox Grid.Column="1" Width="200" Height="25" HorizontalAlignment="Left"></ComboBox>
+        <TextBlock Text="Подразделение" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+        <ComboBox Grid.Column="1" Grid.Row="1" Width="200" Height="25" HorizontalAlignment="Left"></ComboBox>
+        <TextBlock Text="Дата и время" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center" ></TextBlock>
+        <DatePicker Grid.Column="1" Grid.Row="2" Width="200" Height="25" HorizontalAlignment="Left"></DatePicker>
+        <Button Grid.ColumnSpan="2" Grid.Row="3" Content="Заказать пропуск" Width="120" Height="35"></Button>
+    </Grid>
+</Page>

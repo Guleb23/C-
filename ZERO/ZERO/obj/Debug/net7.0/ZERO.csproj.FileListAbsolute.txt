@@ -1,0 +1,15 @@
+C:\Users\глеб\source\repos\ZERO\ZERO\bin\Debug\net7.0\ZERO.exe
+C:\Users\глеб\source\repos\ZERO\ZERO\bin\Debug\net7.0\ZERO.deps.json
+C:\Users\глеб\source\repos\ZERO\ZERO\bin\Debug\net7.0\ZERO.runtimeconfig.json
+C:\Users\глеб\source\repos\ZERO\ZERO\bin\Debug\net7.0\ZERO.dll
+C:\Users\глеб\source\repos\ZERO\ZERO\bin\Debug\net7.0\ZERO.pdb
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ZERO.csproj.AssemblyReference.cache
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ZERO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ZERO.AssemblyInfoInputs.cache
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ZERO.AssemblyInfo.cs
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ZERO.csproj.CoreCompileInputs.cache
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ZERO.dll
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\refint\ZERO.dll
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ZERO.pdb
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ZERO.genruntimeconfig.cache
+C:\Users\глеб\source\repos\ZERO\ZERO\obj\Debug\net7.0\ref\ZERO.dll
